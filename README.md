@@ -3,8 +3,20 @@ To build realtime kernel 4.19.86 with xenomai 3 for raspberry pi 4
 
 References
 ------------
-Xenomai 3: https://xenomai.org/installing-xenomai-3-x/
-Raspberry pi linux: https://github.com/raspberrypi/linux
+* Xenomai 3: https://xenomai.org/installing-xenomai-3-x/
+* Raspberry pi linux: https://github.com/raspberrypi/linux
+
+## A.1 Xenomai installation
+These steps will help you through the installation of xenomai on the raspberry pi 4. The kernel that is used is the 4.19.86 linux kernel.<br>
+Patches from Tantham-h are used to help the installation and make the USB work through the PCIE-bus that is added in the Raspberry pi 4.
+
+### Requirements:
+* Raspberry pi 4
+* 16gb Micro-SD card + reader
+* Computer with Ubuntu
+* Wifi/LAN connection
+
+## A.2 Directory initialization
 
 1. Then we enter the directory and reset the git repository to
 
