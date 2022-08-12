@@ -6,8 +6,56 @@ References
 Xenomai 3: https://xenomai.org/installing-xenomai-3-x/
 Raspberry pi linux: https://github.com/raspberrypi/linux
 
-Here what I did:
-- Modify ipipe patch (4.9.51) to adapt rpi kernel version of 4.9.80
+1. Then we enter the directory and reset the git repository to
+
+git clone git://github.com/raspberrypi/linux.git linux-rpi-4.19.86-xeno3
+cd linux-rpi-4.19.86-xeno3
+git reset --hard c078c64fecb325ee86da705b91ed286c90aae3f6
+cd ..
+
+
+2. Then we create a linked folder for easy access.
+
+ln -s linux-rpi-4.19.86-xeno3 linux
+
+
+3. Download the xenomai tar.bz2 and extract it. Also create a linked folder for the xenomai installation.
+
+wget https://xenomai.org/downloads/xenomai/stable/xenomai-3.1.tar.bz2
+tar -xjvf xenomai-3.1.tar.bz2
+ln -s xenomai-3.1 xenomai
+
+
+4. Download the patches into xeno3-patches
+
+mkdir xeno3-patches && cd xeno3-patches
+wget https://github.com/thanhtam-h/rpi4-xeno3/blob/master/scripts/ipipe-core-4.19.82-arm-6-mod-4.49.86.patch
+wget https://github.com/thanhtam-h/rpi4-xeno3/blob/master/scripts/pre-rpi4-4.19.86-xenomai3-simplerobot.patch
+cd ..
+
+
+1. Patch linux with the pre-patch from Tantham-h
+
+cd linux
+patch -p1 <../xeno3-patches/pre-rpi4-4.19.86-xenomai3-simplerobot.patch
+
+
+2. Patch linux with xenomai
+
+../xenomai/scripts/prepare-kernel.sh --linux=./ --arch=arm --ipipe=../xeno3-patches/ipipe-core-4.19.82-arm-6-mod-4.49.86.patch
+
+
+1. Get the default config of the BCM2711 into the linux directory
+
+make -j8 O=build ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
+
+
+2. Set the menuconfig to the right settings
+
+make -j8 O=build ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
+
+
+make -j4 O=build ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bzImage modules dtbs
 
 Preparation on host PC
 ------------
