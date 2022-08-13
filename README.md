@@ -19,12 +19,6 @@ Patches from Tantham-h are used to help the installation and make the USB work t
 
 ## A. Directory initialization
 
-1. Preparation on host PC
-```bash
-host@ubuntu:~$ sudo apt-get install gcc-arm-linux-gnueabihf
-host@ubuntu:~$ sudo apt-get install --no-install-recommends ncurses-dev bc
-```
-
 1. Start by pulling the linux repository on the host computer.
 ```bash
 host@ubuntu:~$ git clone -b rpi-4.19.y https://github.com/raspberrypi/linux.git linux-rpi-4.19.86-xeno3
@@ -71,17 +65,23 @@ host@ubuntu:~/linux$ ../xenomai/scripts/prepare-kernel.sh --linux=./ --arch=arm 
 
 ## C. Building linux
 
-1. Get the default config of the BCM2711 into the linux directory
+1. Preparation on host PC
+```bash
+host@ubuntu:~$ sudo apt-get install gcc-arm-linux-gnueabihf
+host@ubuntu:~$ sudo apt-get install --no-install-recommends ncurses-dev bc
+```
+
+2. Get the default config of the BCM2711 into the linux directory
 ```bash
 host@ubuntu:~/linux$ make -j8 O=build ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
 ```
 
-2. Set the menuconfig to the right settings
+3. Set the menuconfig to the right settings
 ```bash
 host@ubuntu:~/linux$ make -j8 O=build ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
 ```
 
-3. Edit the following variables:
+4. Edit the following variables:
 ```
 Kernel features —> Timer frequency 1000Hz
 General setup —> (-v7l-xeno3) Local version - append to kernel release
@@ -92,7 +92,7 @@ Xenomai/cobalt —> Drivers —> Real-time GPIO drivers —> [*] GPIO controller
 Xenomai/cobalt —> Drivers —> Real-time IPC drivers –> [*] RTIPC protocol familty
 ```
 
-4. Build the linux kernel (This can take some time, so get coffee or tea...)
+5. Build the linux kernel (This can take some time, so get coffee or tea...)
 ```bash
 host@ubuntu:~/linux$ make -j4 O=build ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bzImage modules dtbs
 ```
