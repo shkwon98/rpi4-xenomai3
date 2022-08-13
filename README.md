@@ -1,4 +1,4 @@
-# RPi4_Xeno3
+# Raspberry Pi 4 Xenomai 3 Patch
 These steps will help you through the installation of xenomai on the **Raspberry Pi 4**. The kernel that is used is the 4.19.86 linux kernel.<br>
 Patches from Tantham-h are used to help the installation and make the USB work through the PCIE-bus that is added in the Raspberry Pi 4.<br>
 <br>
