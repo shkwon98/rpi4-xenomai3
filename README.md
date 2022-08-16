@@ -73,12 +73,12 @@ host@ubuntu:~$ sudo apt-get install --no-install-recommends ncurses-dev bc
 
 2. Get the default config of the BCM2711 into the linux directory
 ```bash
-host@ubuntu:~/linux$ make -j8 O=build ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
+host@ubuntu:~/linux$ make -j4 O=build ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
 ```
 
 3. Set the menuconfig to the right settings
 ```bash
-host@ubuntu:~/linux$ make -j8 O=build ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
+host@ubuntu:~/linux$ make -j4 O=build ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
 ```
 
 4. Edit the following variables:
