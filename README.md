@@ -41,8 +41,8 @@ host@ubuntu:~$ ln -s xenomai-3.1 xenomai
 4. Download the patches into xeno3-patches
 ```console
 host@ubuntu:~$ mkdir xeno3-patches && cd xeno3-patches
-host@ubuntu:~/xeno3-patches$ wget https://github.com/shkwon98/RPi4_Xeno3/blob/main/ipipe-core-4.19.82-arm-6-mod-4.49.86.patch
-host@ubuntu:~/xeno3-patches$ wget https://github.com/shkwon98/RPi4_Xeno3/blob/main/pre-rpi4-4.19.86-xenomai3-simplerobot.patch
+host@ubuntu:~/xeno3-patches$ wget https://github.com/shkwon98/rpi4-xenomai3/blob/main/ipipe-core-4.19.82-arm-6-mod-4.49.86.patch
+host@ubuntu:~/xeno3-patches$ wget https://github.com/shkwon98/rpi4-xenomai3/blob/main/pre-rpi4-4.19.86-xenomai3-simplerobot.patch
 host@ubuntu:~/xeno3-patches$ cd ..
 ```
 
